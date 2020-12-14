@@ -1,15 +1,24 @@
+from datetime import datetime,timedelta
+from io import open
+import pickle
+
 eleccion=int;
 eleccion2=int;
 eleccion3=int;
 passAdmin=1234;
 pase=int;
 
+fichero = open('ficheros/parking.pckl','rb')
+# Cargamos los datos del fichero
+parking = pickle.load(fichero)
+fichero.close()
+
 print("Bienvenido al Parking robotizado")
 while eleccion!=0:
     print("1 para entrar como Cliente")
     print("2 para entrar como Administrador")
     print("0 para salir")
-    eleccion = input(int('¿Qué desea hacer?: '))
+    eleccion = int(input('¿Qué desea hacer?: '))
 
     if eleccion==1:
         while eleccion2!=0 :
@@ -18,9 +27,9 @@ while eleccion!=0:
             print("3 para depositar abonado")
             print("4 para retirar abonado")
             print("0 para salir")
-            eleccion2 = input(int('¿Qué desea hacer? '))
+            eleccion2 = int(input('¿Qué desea hacer? '))
             if eleccion2==1:
-
+                parking.devolverPlazasLibres()
                 break
 
             if eleccion2==2:
@@ -37,7 +46,7 @@ while eleccion!=0:
                 break
 
     elif eleccion==2:
-        pase=input(int("Introduzca contraseña de administrador: "))
+        pase=int(input("Introduzca contraseña de administrador: "))
         if(pase==passAdmin):
             while eleccion3!=0 :
                 print("1 para ver el estado del parking")
@@ -48,7 +57,7 @@ while eleccion!=0:
                 print("6 borrar abonado")
                 print("7 consultar caducidad")
                 print("0 para salir")
-                eleccion3 = input(int('¿Qué desea hacer? '))
+                eleccion3 = int(input('¿Qué desea hacer? '))
                 if eleccion3==1:
                     break
                 elif eleccion3==2:

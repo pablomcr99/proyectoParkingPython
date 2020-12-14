@@ -8,7 +8,7 @@ class Plaza():
 
     @property
     def id(self):
-        return self._id
+        return self.__id
 
     @id.setter
     def id(self,Id):
@@ -16,7 +16,7 @@ class Plaza():
 
     @property
     def estado(self):
-        return self._estado
+        return self.__estado
 
     @id.setter
     def estado(self,estado):
@@ -25,7 +25,7 @@ class Plaza():
 
     @property
     def vehiculo(self):
-        return self._vehiculo
+        return self.__vehiculo
 
     @id.setter
     def vehiculo(self,newVehiculo):

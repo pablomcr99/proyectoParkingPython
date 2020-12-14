@@ -67,31 +67,26 @@ class Parking():
         self.__recaudacion_abonados = recaudacion_abonados
 
 
-
-"""    def devolverPlazasLibres():
+    def devolverPlazasLibres(self):
         contadorT=15
         contadorM=15
         contadorC=15
-        for(let i=0;i<this._plazasTurismos.length;i++){
-            if(this._plazasTurismos[i].estado!="libre"){
-                contadorT--;
-            }
-        }
-        for(let i=0;i<this._plazasMotocicletas.length;i++){
-            if(this._plazasMotocicletas[i].estado!="libre"){
-                contadorM--;
-            }
-        }
-        for(let i=0;i<this._plazasCaravanas.length;i++){
-            if(this._plazasCaravanas[i].estado!="libre"){
-                contadorC--;
-            }
-        }
-        console.log("Hay "+contadorT+" plazas libres para Turismos");
-        console.log("Hay "+contadorM+" plazas libres para Motocicletas");
-        console.log("Hay "+contadorC+" plazas libres para Caravanas");
-    }
+        for i in self.__plazas_turismos:
+            if i.estado!="libre":
+                contadorT-1
+        for i in self.__plazas_motocicletas:
+            if i.estado!="libre":
+                contadorM-1
+        for i in self.__plazas_caravanas:
+            if i.estado!="libre":
+                contadorC-1
+        print("Hay "+str(contadorT)+" plazas libres para Turismos")
+        print("Hay "+str(contadorM)+" plazas libres para Motocicletas")
+        print("Hay "+str(contadorC)+" plazas libres para Caravanas")
 
+
+
+"""
     estadoPlazas(){
         for(let i=0;i<this._plazasTurismos.length;i++){
             console.log("Plaza Para Turismos Id:"+this._plazasTurismos[i].id+" ,Estado "+this._plazasTurismos[i].estado);
