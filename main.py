@@ -2,11 +2,20 @@ from datetime import datetime,timedelta
 from io import open
 import pickle
 
-eleccion=int;
-eleccion2=int;
-eleccion3=int;
-passAdmin=1234;
-pase=int;
+from modelos.Ticket import Ticket
+from modelos.Vehiculo import Vehiculo
+from servicios.parkingservicio import Parking_Servicio
+from servicios.ticketServicio import Ticket_servicio
+import random
+
+
+ps=Parking_Servicio()
+
+eleccion=int
+eleccion2=int
+eleccion3=int
+passAdmin=1234
+pase=int
 
 fichero = open('ficheros/parking.pckl','rb')
 # Cargamos los datos del fichero
@@ -29,19 +38,29 @@ while eleccion!=0:
             print("0 para salir")
             eleccion2 = int(input('¿Qué desea hacer? '))
             if eleccion2==1:
-                parking.devolverPlazasLibres()
+                ps.devolver_plazas_libres()
+                matricula = int(input('Introduzca matricula '))
+                tipo = input('Introduzca Tipo 1:turismo 2:motocicletas 3:caravanas ')
+                nuevoVehiculo=Vehiculo(matricula,tipo)
+                ps.asignar_plaza(nuevoVehiculo)
+                m = datetime.now()
+                Pin=random.randint(1000,9999)
+                ticket=Ticket(matricula,m,ps.devolver_plaza(nuevoVehiculo),Pin)
+                ts=Ticket_servicio(ticket)
+                ts.guardar()
+                ts.imprimirTicket();
                 break
-
             if eleccion2==2:
-
+                matricula2 = input('Introduzca matricula: ')
+                idplaza = int(input('Diga el Id de la plaza '))
+                pin = int(input('Introduzca el PIN'))
+                ps.retirarVehiculo(matricula2,idplaza,pin)
+                print("Su vehiculo ha sido retirado")
                 break
-
             if eleccion2==3:
                 break
-
             if eleccion2==4:
                 break
-
             if eleccion2==0:
                 break
 
@@ -59,6 +78,7 @@ while eleccion!=0:
                 print("0 para salir")
                 eleccion3 = int(input('¿Qué desea hacer? '))
                 if eleccion3==1:
+                    ps.estadoPlazas()
                     break
                 elif eleccion3==2:
                     break

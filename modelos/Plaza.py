@@ -18,7 +18,7 @@ class Plaza():
     def estado(self):
         return self.__estado
 
-    @id.setter
+    @estado.setter
     def estado(self,estado):
         self.__estado = estado
 
@@ -27,7 +27,7 @@ class Plaza():
     def vehiculo(self):
         return self.__vehiculo
 
-    @id.setter
+    @vehiculo.setter
     def vehiculo(self,newVehiculo):
         self.__vehiculo = newVehiculo
 

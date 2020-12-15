@@ -1,3 +1,5 @@
+import pickle
+
 class Ticket():
 
     def __init__(self,matricula_vehiculo,fecha,id_plaza,pin):
@@ -25,10 +27,10 @@ class Ticket():
         self.__fecha = newFecha
 
     @property
-    def idplaza(self):
-        return self.__idplaza
+    def id_plaza(self):
+        return self.__id_plaza
 
-    @idplaza.setter
+    @id_plaza.setter
     def id_plaza(self,newIdPlaza):
         self.__id_plaza = newIdPlaza
 
@@ -40,6 +42,8 @@ class Ticket():
     @pin.setter
     def pin(self,pin):
         self.__pin=pin
+
+
 
 
 
