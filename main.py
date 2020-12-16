@@ -58,8 +58,22 @@ while eleccion!=0:
                 print("Su vehiculo ha sido retirado")
                 break
             if eleccion2==3:
+                acceso = input('Para demostrar que eres un cliente abonado introduce tu dni :')
+                if ps.comprobar_abonado(acceso):
+                    ps.depositar_abonado(ps.devolver_plaza_cliente(ps.devolver_cliente(acceso)));
+                    print("Su vehiculo ha sido depositado correctamente")
+                else:
+                    print("No estas abonado o has introducido mal los datos")
                 break
             if eleccion2==4:
+                acceso2 = input('Introduzca la matricula de su vehiculo : ')
+                idplaza2 = int(input('Introduzca el id de su plaza : '))
+                pin2 = int(('Introduzca su pin :'))
+                if ps.comprobarPlaza(idplaza2):
+                    ps.retirarAbonado(acceso2,idplaza2,pin2);
+                    print("Se ha retirado su vehiculo pero su plaza ha quedado reservada")
+                else:
+                    print("No estas abonado,has introducido mal los datos o su vehiculo no se encuentra en el parking")
                 break
             if eleccion2==0:
                 break
@@ -81,12 +95,32 @@ while eleccion!=0:
                     ps.estadoPlazas()
                     break
                 elif eleccion3==2:
+                    ps.devolver_facturacion()
                     break
                 elif eleccion3==3:
+                    ps.lista_abonados()
+                    print("La recaudacion Total por abonos es "+ps.consulta_abonados()+" euros")
                     break
                 elif eleccion3==4:
+                    dni = input('Introduzca dni :')
+                    nombre=input('Introduzca Nombre: ')
+                    apellidos=input('Introduza apellidos: ')
+                    num_tarjeta=int(input('Introduzca el numero de su Tarjeta: '))
+                    tipo_abono=input('¿Qué tipo de abono desea? 1:Mensual 2:Trimestral 3:Semestral 4:Anual')
+                    email=input('Introduzca email: ')
+                    fecha_activacion=datetime.now()
+                    nuevo_pin=random.randint(1000,9999)
+                    nuevo_cliente=Cliente(dni,nombre,apellidos,num_tarjeta,tipo_abono,email,None,None,nuevo_pin,fecha_activacion,ps.calcular_fecha_caducidad(tipo_abono))
+                    ps.guardar_cliente(nuevo_cliente)
+                    print("El cliente y el abono han sido guardados correctamente")
                     break
                 elif eleccion3==5:
+                    int_dni = input('Introduce el dni del cliente que deseas eliminar :')
+                    nn=input('Introduce nuevo nombre: ')
+                    nap=input('Introduce nuevos apellidos: ')
+                    n_email=input('Introduce de nuevo el email para modificarlo: ')
+                    ps.modificar_abonado(int_dni,nn,nap,n_email)
+                    print("El cliente abonado ha sido eliminado correctamente")
                     break
                 elif eleccion3==6:
                     break

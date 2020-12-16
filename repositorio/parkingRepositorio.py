@@ -43,7 +43,7 @@ plazam14= Plaza(29,"libre",None)
 plazam15= Plaza(30,"libre",None)
 
 plazas_motocicletas=[plazam1,plazam2,plazam3,plazam4,plazam5,plazam6,plazam7,plazam8,plazam9,plazam10,plazam11
-    ,plazam12,plazam13,plazam14,plazam15];
+    ,plazam12,plazam13,plazam14,plazam15]
 
 plazac1= Plaza(31,"libre",None)
 plazac2= Plaza(32,"libre",None)
@@ -62,7 +62,7 @@ plazac14= Plaza(44,"libre",None)
 plazac15= Plaza(45,"libre",None)
 
 plazas_caravanas=[plazac1,plazac2,plazac3,plazac4,plazac5,plazac6,plazac7,plazac8,plazac9,plazac10,plazac11
-    ,plazac12,plazac13,plazac14,plazac15];
+    ,plazac12,plazac13,plazac14,plazac15]
 
 
 vehiculo=Vehiculo("6459",3)

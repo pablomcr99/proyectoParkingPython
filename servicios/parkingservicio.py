@@ -81,15 +81,11 @@ class Parking_Servicio():
                 i.estado="Libre"
                 now=datetime.now()
                 #parking.recaudacion+=int(now)*0.12
-
-
         for i in parking.plazas_motocicletas:
             if i.id==idPlaza:
                 i.estado="Libre"
                 now=datetime.now()
                 #parking.recaudacion+=int(now)*0.08
-
-
         for i in parking.plazas_caravanas:
             if i.id==idPlaza:
                i.estado="Libre"
@@ -115,6 +111,9 @@ class Parking_Servicio():
 
     def devolver_plaza_cliente(self,cliente):
         return cliente.plaza
+
+    def guardar_cliente(self,cliente):
+        parking.lista_clientes.append(cliente)
 
 
 
@@ -182,22 +181,22 @@ class Parking_Servicio():
             parking.recaudacion_abonados+=200
             return fechaCaducidad4
 
-    def listaAbonados(self):
+    def lista_abonados(self):
         for i in parking.lista_clientes:
             print(i.nombre+" "+i.apellidos+" Abono:"+str(i.tipoabono)+" FechaIn: "+i.fechaActivacionAbono+" FechaFin: "+i.fechaCaducidadAbono);
 
 
-    def consultaAbonados(self):
+    def consulta_abonados(self):
         return parking.recaudacionAbonados
 
-    def modificarAbonado(self,dni,nombre,apellidos,email):
+    def modificar_abonado(self,dni,nombre,apellidos,email):
         for i in parking.lista_clientes:
             if i.dni==dni:
                 i.nombre=nombre
                 i.apellidos=apellidos
                 i.email=email
 
-    def eliminarAbonado(self,dni):
+    def eliminar_abonado(self,dni):
         cuentaIndice=-1
         for i in parking.lista_clientes:
             cuentaIndice=cuentaIndice+1
