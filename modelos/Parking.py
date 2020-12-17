@@ -6,6 +6,7 @@ class Parking():
         self.__plazas_caravanas=plazas_caravanas
         self.__lista_clientes=lista_clientes
         self.__recaudacion=recaudacion
+        self.__recaudacion_abonados=recaudacion_abonados
 
 
 

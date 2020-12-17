@@ -1,7 +1,7 @@
 class Cliente():
 
 
-    def __init__(self,dni,nombre,apellidos,num_tarjeta,tipo_abono,email,vehiculo,plaza,pin,fecha_Activacion_Abono,fecha_Caducidad_Abono):
+    def __init__(self,dni,nombre,apellidos,num_tarjeta,tipo_abono,email,vehiculo,plaza,pin,fecha_activacion_abono,fecha_caducidad_abono):
         self.__dni=dni
         self.__nombre=nombre
         self.__apellidos=apellidos
@@ -11,8 +11,8 @@ class Cliente():
         self.__vehiculo=vehiculo
         self.__plaza=plaza
         self.__pin=pin
-        self.__fecha_Activacion_Abono=fecha_Activacion_Abono
-        self.__fecha_Caducidad_Abono=fecha_Caducidad_Abono
+        self.__fecha_activacion_abono=fecha_activacion_abono
+        self.__fecha_caducidad_abono=fecha_caducidad_abono
 
 
 
@@ -106,23 +106,23 @@ class Cliente():
 
 
     @property
-    def fecha_Activacion_Abono(self):
-      return self.__fecha_Activacion_Abono
+    def fecha_activacion_abono(self):
+      return self.__fecha_activacion_abono
 
 
-    @fecha_Activacion_Abono.setter
-    def fecha_Activacion_Abono(self,fechaActivacionAbono):
-        self.__fecha_Activacion_Abono = fechaActivacionAbono
+    @fecha_activacion_abono.setter
+    def fecha_activacion_abono(self,fechaActivacionAbono):
+        self.__fecha_activacion_abono = fechaActivacionAbono
 
 
     @property
-    def fecha_Caducidad_Abono(self):
-      return self.__fecha_Caducidad_Abono
+    def fecha_caducidad_abono(self):
+      return self.__fecha_caducidad_abono
 
 
-    @fecha_Caducidad_Abono.setter
-    def fecha_Caducidad_Abono(self,fechaCaducidadAbono):
-        self.__fecha_Caducidad_Abono = fechaCaducidadAbono
+    @fecha_caducidad_abono.setter
+    def fecha_caducidad_abono(self,fechaCaducidadAbono):
+        self.__fecha_caducidad_abono = fechaCaducidadAbono
     
 
 

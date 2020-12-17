@@ -15,19 +15,32 @@ fichero.close()
 class Parking_Servicio():
 
 
+
+
+    def cargar(self):
+        f=open('ficheros/lista_clientes.pckl','rb')
+        clientes=pickle.load(f)
+        f.close()
+        parking.lista_clientes=clientes
+
+        f2=open('ficheros/recaudacion.pckl','rb')
+        recaudacion_abonados=pickle.load(f2)
+        f2.close()
+        parking.recaudacion_abonados=recaudacion_abonados
+
     def devolver_plazas_libres(self):
         contadorT=15
         contadorM=15
         contadorC=15
         for i in parking.plazas_turismos:
             if i.estado!="libre":
-                contadorT-1
+                contadorT=contadorT-1
         for i in parking.plazas_motocicletas:
             if i.estado!="libre":
-                contadorM-1
+                contadorM=contadorM-1
         for i in parking.plazas_caravanas:
             if i.estado!="libre":
-                contadorC-1
+                contadorC=contadorC-1
         print("Hay "+str(contadorT)+" plazas libres para Turismos")
         print("Hay "+str(contadorM)+" plazas libres para Motocicletas")
         print("Hay "+str(contadorC)+" plazas libres para Caravanas")
@@ -114,6 +127,9 @@ class Parking_Servicio():
 
     def guardar_cliente(self,cliente):
         parking.lista_clientes.append(cliente)
+        f= open('ficheros/lista_clientes.pckl','wb')
+        pickle.dump(parking.lista_clientes,f)
+        f.close()
 
 
 
@@ -161,33 +177,44 @@ class Parking_Servicio():
                 i.estado="RESERVADO"
 
     def calcular_fecha_caducidad(self,tipoAbono):
+        f2=open('ficheros/recaudacion.pckl','wb')
         if tipoAbono=="1":
             fechaCaducidad1=datetime.now()+timedelta(days=30)
             parking.recaudacion_abonados+=25
+            pickle.dump(parking.recaudacion_abonados,f2)
+            f2.close()
             return fechaCaducidad1
 
         if tipoAbono=="2":
             fechaCaducidad2=datetime.now()+timedelta(days=90)
             parking.recaudacion_abonados+=70
+            pickle.dump(parking.recaudacion_abonados,f2)
+            f2.close()
             return fechaCaducidad2
 
         if tipoAbono=="3":
             fechaCaducidad3=datetime.now()+timedelta(days=180)
             parking.recaudacion_abonados+=130
+            pickle.dump(parking.recaudacion_abonados,f2)
+            f2.close()
             return fechaCaducidad3
 
         if tipoAbono=="4":
             fechaCaducidad4=datetime.now()+timedelta(days=365)
             parking.recaudacion_abonados+=200
+            pickle.dump(parking.recaudacion_abonados,f2)
+            f2.close()
             return fechaCaducidad4
+
 
     def lista_abonados(self):
         for i in parking.lista_clientes:
-            print(i.nombre+" "+i.apellidos+" Abono:"+str(i.tipoabono)+" FechaIn: "+i.fechaActivacionAbono+" FechaFin: "+i.fechaCaducidadAbono);
+            print(i.nombre+" "+i.apellidos+" Abono:"+str(i.tipo_abono)+" Fecha Inicio: "+str(i.fecha_activacion_abono)+" Fecha Fin: "+str(i.fecha_caducidad_abono))
 
 
     def consulta_abonados(self):
-        return parking.recaudacionAbonados
+        return parking.recaudacion_abonados
+
 
     def modificar_abonado(self,dni,nombre,apellidos,email):
         for i in parking.lista_clientes:
@@ -195,6 +222,7 @@ class Parking_Servicio():
                 i.nombre=nombre
                 i.apellidos=apellidos
                 i.email=email
+
 
     def eliminar_abonado(self,dni):
         cuentaIndice=-1

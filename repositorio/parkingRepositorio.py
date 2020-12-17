@@ -70,12 +70,29 @@ fechaActiv=datetime.now()
 fechaFinal=fechaActiv+timedelta(days=30)
 
 
-cliente1=Cliente("11111111A","Pablo","Mancina Castro",7141,1,"pablomancina@gmail.com",vehiculo,plazac14,789456,fechaActiv,fechaFinal);
+cliente1=Cliente("11111111A","Pablo","Mancina Castro",7141,1,"pablomancina@gmail.com",vehiculo,plazac14,789456,fechaActiv,fechaFinal)
 
-lista_clientes=[cliente1];
+lista_clientes=[cliente1]
+
+f= open('../ficheros/lista_clientes.pckl','wb')
+
+pickle.dump(lista_clientes,f)
+
+f.close()
+
+f= open('../ficheros/lista_clientes.pckl','rb')
+clientes = pickle.load(f)
+f.close()
 
 
-parking_proyecto= Parking(plazas_turismos,plazas_motocicletas,plazas_caravanas,lista_clientes,None,None)
+parking_proyecto= Parking(plazas_turismos,plazas_motocicletas,plazas_caravanas,clientes,None,None)
+
+parking_proyecto.recaudacion=100
+parking_proyecto.recaudacion_abonados=25
+
+f2=open('../ficheros/recaudacion.pckl','wb')
+pickle.dump(parking_proyecto.recaudacion_abonados,f2)
+f2.close()
 
 
 fichero = open('../ficheros/parking.pckl','wb')
