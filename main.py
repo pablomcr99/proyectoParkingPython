@@ -82,7 +82,7 @@ while eleccion!=0:
                         print("Introduzca una de las opciones posibles")
             elif eleccion==2:
                 pase=int(input("Introduzca contraseña de administrador: "))
-                if(pase==passAdmin):
+                if pase==passAdmin:
                     while eleccion3!=0 :
                         print("1 para ver el estado del parking")
                         print("2 para ver la facturacion")
@@ -141,5 +141,6 @@ while eleccion!=0:
                 break
     except ValueError:
         print("Introduzca una de las opciones posibles")
+ps.actualizar_parking(ps.devolver_parking())
 print("¡Pase un buen día!")
 print("Cerrando...")

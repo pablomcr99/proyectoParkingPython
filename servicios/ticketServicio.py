@@ -20,11 +20,11 @@ class Ticket_servicio():
 
     def imprimirTicket(self):
       print("**************************************************************")
-      print("*          Fecha: "+str(self.__ticket.fecha)+"                       *");
+      print("*          Fecha: "+str(self.__ticket.fecha)+"                 *")
       print("*                                                            *")
-      print("* Matricula: "+str(self.__ticket.matricula_vehiculo)+"  IDplaza: "+str(self.__ticket.id_plaza)+"                           *")
+      print("* Matricula: "+str(self.__ticket.matricula_vehiculo)+"          IDplaza: "+str(self.__ticket.id_plaza)+"                           *")
       print("*                                                            *")
-      print("*          PIN: "+ str(self.__ticket.pin)+"                                       *")
+      print("*           PIN: "+ str(self.__ticket.pin)+"                                        *")
       print("*                                                            *")
       print("*                                                            *")
       print("**************************************************************")

@@ -28,6 +28,16 @@ class Parking_Servicio():
         f2.close()
         parking.recaudacion_abonados=recaudacion_abonados
 
+    def devolver_parking(self):
+        return parking
+
+    def actualizar_parking(self,nuevo_parking):
+        fichero=open('ficheros/parking.pckl','wb')
+        pickle.dump(nuevo_parking,fichero)
+        fichero.close()
+
+
+
     def devolver_plazas_libres(self):
         contadorT=15
         contadorM=15
