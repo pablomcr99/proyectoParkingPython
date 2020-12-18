@@ -12,7 +12,7 @@ import random
 
 ps=Parking_Servicio()
 
-eleccion=int
+eleccion=str
 eleccion2=int
 eleccion3=int
 passAdmin=1234
@@ -26,11 +26,13 @@ while eleccion!=0:
     print("2 para entrar como Administrador")
     print("0 para salir")
     try:
-        eleccion = int(input('¿Qué desea hacer?: '))
-        if eleccion!=1 and eleccion!=2 and eleccion!=0:
+        eleccion = input('¿Qué desea hacer?: ')
+        eleccion2=int
+        eleccion3=int
+        if eleccion!="1" and eleccion!="2" and eleccion!="0":
             raise ValueError
         else:
-            if eleccion==1:
+            if eleccion=="1":
                 while eleccion2!=0 :
                     print("1 para depositar vehiculo")
                     print("2 para retirar vehiculo")
@@ -80,7 +82,8 @@ while eleccion!=0:
                                 break
                     except ValueError:
                         print("Introduzca una de las opciones posibles")
-            elif eleccion==2:
+            elif eleccion=="2":
+                pase=0
                 pase=int(input("Introduzca contraseña de administrador: "))
                 if pase==passAdmin:
                     while eleccion3!=0 :
@@ -134,10 +137,10 @@ while eleccion!=0:
                                         break
                         except ValueError:
                             print("Introduzca una de las opciones posibles")
-                    else:
-                        print("No puedes pasar")
-                        break
-            elif eleccion==0:
+                else:
+                    print("No puedes pasar")
+                    break
+            elif eleccion=="0":
                 break
     except ValueError:
         print("Introduzca una de las opciones posibles")
