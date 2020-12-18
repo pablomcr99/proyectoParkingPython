@@ -1,7 +1,6 @@
 from datetime import datetime,timedelta
 from io import open
 import pickle
-
 from modelos.Cliente import Cliente
 from modelos.Ticket import Ticket
 from modelos.Vehiculo import Vehiculo
@@ -13,13 +12,9 @@ import random
 ps=Parking_Servicio()
 
 eleccion=str
-eleccion2=int
-eleccion3=int
 passAdmin=1234
-pase=int
 
 ps.cargar()
-
 print("Bienvenido al Parking robotizado")
 while eleccion!=0:
     print("1 para entrar como Cliente")
@@ -83,7 +78,7 @@ while eleccion!=0:
                     except ValueError:
                         print("Introduzca una de las opciones posibles")
             elif eleccion=="2":
-                pase=0
+                pase=int
                 pase=int(input("Introduzca contraseña de administrador: "))
                 if pase==passAdmin:
                     while eleccion3!=0 :
