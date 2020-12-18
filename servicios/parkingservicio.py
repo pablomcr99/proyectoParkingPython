@@ -2,6 +2,7 @@ from datetime import datetime,timedelta
 from io import open
 import pickle
 
+from modelos.Plaza import Plaza
 from modelos.Ticket import Ticket
 from modelos.Vehiculo import Vehiculo
 import random
@@ -36,32 +37,46 @@ class Parking_Servicio():
         pickle.dump(nuevo_parking,fichero)
         fichero.close()
 
+    def generarPlazas(self,n):
+        nTurismos=(n*70)/100
+        nMotocicletas=(n*15)/100
+        nMovRed=(n*15)/100
+        for i in nTurismos:
+            nuevaPlaza=Plaza(int(i)+1,"libre",None)
+            parking.plazas_turismos.append(nuevaPlaza)
+        for i in nMotocicletas:
+            nuevaPlaza=Plaza(int(i)+1+len(parking.plazas_turismos),"libre",None)
+            parking.plazas_motocicletas.append(nuevaPlaza)
+        for i in nMovRed:
+            nuevaPlaza=Plaza(int(i)+1+len(parking.plazas_motocicletas)+len(parking.plazas_turismos),"libre",None)
+            parking.plazas_mov_red.append(nuevaPlaza)
+
 
 
     def devolver_plazas_libres(self):
-        contadorT=15
-        contadorM=15
-        contadorC=15
+        contadorT=len(parking.plazas_turismos)
+        contadorM=len(parking.plazas_motocicletas)
+        contadorMr=len(parking.plazas_mov_red)
         for i in parking.plazas_turismos:
             if i.estado!="libre":
                 contadorT=contadorT-1
         for i in parking.plazas_motocicletas:
             if i.estado!="libre":
                 contadorM=contadorM-1
-        for i in parking.plazas_caravanas:
+        for i in parking.plazas_mov_red:
             if i.estado!="libre":
-                contadorC=contadorC-1
+                contadorMr=contadorMr-1
         print("Hay "+str(contadorT)+" plazas libres para Turismos")
         print("Hay "+str(contadorM)+" plazas libres para Motocicletas")
-        print("Hay "+str(contadorC)+" plazas libres para Caravanas")
+        print("Hay "+str(contadorMr)+" plazas libres para Movilidad Reducida")
 
     def estado_plazas(self):
         for i in parking.plazas_turismos:
             print("Plaza Para Turismos Id:"+str(i.id)+" ,Estado: "+i.estado)
         for i in parking.plazas_motocicletas:
             print("Plaza Para Motocicletas Id:"+str(i.id)+" ,Estado: "+i.estado)
-        for i in parking.plazas_caravanas:
-            print("Plaza Para Caravanas Id:"+str(i.id)+" ,Estado: "+i.estado)
+        for i in parking.plazas_mov_red:
+            print("Plaza Para Movilidad Reducida Id:"+str(i.id)+" ,Estado: "+i.estado)
 
 
     def asignar_plaza(self,newvehiculo):
@@ -80,7 +95,7 @@ class Parking_Servicio():
                     break
                 break
         if newvehiculo.tipo=="3":
-            for i in parking.plazas_caravanas:
+            for i in parking.plazas_mov_red:
                 if i.estado=="libre":
                     i.vehiculo=newvehiculo
                     i.estado="OCUPADA"
@@ -94,7 +109,7 @@ class Parking_Servicio():
         for i in parking.plazas_motocicletas:
             if i.vehiculo==vehiculo:
                 return i.id
-        for i in parking.plazas_caravanas:
+        for i in parking.plazas_mov_red:
             if i.vehiculo==vehiculo:
                 return i.id
 

@@ -47,7 +47,7 @@ while eleccion!=0:
                             if eleccion2==1:
                                 ps.devolver_plazas_libres()
                                 matricula = int(input('Introduzca matricula '))
-                                tipo = input('Introduzca Tipo 1:turismo 2:motocicletas 3:caravanas ')
+                                tipo = input('Introduzca Tipo 1:turismo 2:motocicletas 3:movilidad reducida ')
                                 nuevoVehiculo=Vehiculo(matricula,tipo)
                                 ps.asignar_plaza(nuevoVehiculo)
                                 m = datetime.now()

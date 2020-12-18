@@ -1,9 +1,9 @@
 class Parking():
 
-    def __init__(self,plazas_turismos,plazas_motocicletas,plazas_caravanas,lista_clientes,recaudacion,recaudacion_abonados):
+    def __init__(self,plazas_turismos,plazas_motocicletas,plazas_mov_red,lista_clientes,recaudacion,recaudacion_abonados):
         self.__plazas_turismos=plazas_turismos
         self.__plazas_motocicletas=plazas_motocicletas
-        self.__plazas_caravanas=plazas_caravanas
+        self.__plazas_mov_red=plazas_mov_red
         self.__lista_clientes=lista_clientes
         self.__recaudacion=recaudacion
         self.__recaudacion_abonados=recaudacion_abonados
@@ -41,12 +41,12 @@ class Parking():
 
 
     @property
-    def plazas_caravanas(self):
-        return self.__plazas_caravanas
+    def plazas_mov_red(self):
+        return self.__plazas_mov_red
 
-    @plazas_caravanas.setter
-    def plazas_caravanas(self,newPlazaCaravanas):
-        self.__plazas_caravanas = newPlazaCaravanas
+    @plazas_mov_red.setter
+    def plazas_mov_red(self,newPlazaCaravanas):
+        self.__plazas_mov_red = newPlazaCaravanas
 
 
     @property

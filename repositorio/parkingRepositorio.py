@@ -22,47 +22,53 @@ plazat12= Plaza(12,"libre",None)
 plazat13= Plaza(13,"libre",None)
 plazat14= Plaza(14,"libre",None)
 plazat15= Plaza(15,"libre",None)
+plazat16= Plaza(16,"libre",None)
+plazat17= Plaza(17,"libre",None)
+plazat18= Plaza(18,"libre",None)
+plazat19= Plaza(19,"libre",None)
+plazat20= Plaza(20,"libre",None)
+plazat21= Plaza(21,"libre",None)
+plazat22= Plaza(22,"libre",None)
+plazat23= Plaza(23,"libre",None)
+plazat24= Plaza(24,"libre",None)
+plazat25= Plaza(25,"libre",None)
+plazat26= Plaza(26,"libre",None)
+plazat27= Plaza(27,"libre",None)
+plazat28= Plaza(28,"libre",None)
+plazat29= Plaza(29,"libre",None)
+plazat30= Plaza(30,"libre",None)
+plazat31= Plaza(31,"libre",None)
+plazat32= Plaza(32,"libre",None)
+plazat33= Plaza(33,"libre",None)
+plazat34= Plaza(34,"libre",None)
+plazat35= Plaza(35,"libre",None)
 
 plazas_turismos=[plazat1,plazat2,plazat3,plazat4,plazat5,plazat6,plazat7,plazat8,plazat9,plazat10,plazat11
-,plazat12,plazat13,plazat14,plazat15]
+,plazat12,plazat13,plazat14,plazat15,plazat16,plazat17,plazat18,plazat19,plazat20,plazat21,plazat22,plazat23,
+                 plazat24,plazat25,plazat26,plazat27,plazat28,plazat29,plazat30,plazat31,plazat32,plazat33,
+                 plazat34,plazat35]
 
-plazam1= Plaza(16,"libre",None)
-plazam2= Plaza(17,"libre",None)
-plazam3= Plaza(18,"libre",None)
-plazam4= Plaza(19,"libre",None)
-plazam5= Plaza(20,"libre",None)
-plazam6= Plaza(21,"libre",None)
-plazam7= Plaza(22,"libre",None)
-plazam8= Plaza(23,"libre",None)
-plazam9= Plaza(24,"libre",None)
-plazam10= Plaza(25,"libre",None)
-plazam11= Plaza(26,"libre",None)
-plazam12= Plaza(27,"libre",None)
-plazam13= Plaza(28,"libre",None)
-plazam14= Plaza(29,"libre",None)
-plazam15= Plaza(30,"libre",None)
 
-plazas_motocicletas=[plazam1,plazam2,plazam3,plazam4,plazam5,plazam6,plazam7,plazam8,plazam9,plazam10,plazam11
-    ,plazam12,plazam13,plazam14,plazam15]
+plazam1= Plaza(36,"libre",None)
+plazam2= Plaza(37,"libre",None)
+plazam3= Plaza(38,"libre",None)
+plazam4= Plaza(39,"libre",None)
+plazam5= Plaza(40,"libre",None)
+plazam6= Plaza(41,"libre",None)
+plazam7= Plaza(42,"libre",None)
 
-plazac1= Plaza(31,"libre",None)
-plazac2= Plaza(32,"libre",None)
-plazac3= Plaza(33,"libre",None)
-plazac4= Plaza(34,"libre",None)
-plazac5= Plaza(35,"libre",None)
-plazac6= Plaza(36,"libre",None)
-plazac7= Plaza(37,"libre",None)
-plazac8= Plaza(38,"libre",None)
-plazac9= Plaza(39,"libre",None)
-plazac10= Plaza(40,"libre",None)
-plazac11= Plaza(41,"libre",None)
-plazac12= Plaza(42,"libre",None)
-plazac13= Plaza(43,"libre",None)
-plazac14= Plaza(44,"libre",None)
-plazac15= Plaza(45,"libre",None)
+plazas_motocicletas=[plazam1,plazam2,plazam3,plazam4,plazam5,plazam6,plazam7]
 
-plazas_caravanas=[plazac1,plazac2,plazac3,plazac4,plazac5,plazac6,plazac7,plazac8,plazac9,plazac10,plazac11
-    ,plazac12,plazac13,plazac14,plazac15]
+
+plazamr1= Plaza(43,"libre",None)
+plazamr2= Plaza(44,"libre",None)
+plazamr3= Plaza(45,"libre",None)
+plazamr4= Plaza(46,"libre",None)
+plazamr5= Plaza(47,"libre",None)
+plazamr6= Plaza(48,"libre",None)
+plazamr7= Plaza(49,"libre",None)
+
+plazas_mov_red=[plazamr1,plazamr2,plazamr3,plazamr4,plazamr5,plazamr6,plazamr7]
 
 
 vehiculo=Vehiculo("6459",3)
@@ -70,7 +76,7 @@ fechaActiv=datetime.now()
 fechaFinal=fechaActiv+timedelta(days=30)
 
 
-cliente1=Cliente("11111111A","Pablo","Mancina Castro",7141,1,"pablomancina@gmail.com",vehiculo,plazac14,789456,fechaActiv,fechaFinal)
+cliente1=Cliente("11111111A","Pablo","Mancina Castro",7141,1,"pablomancina@gmail.com",vehiculo,plazat14,789456,fechaActiv,fechaFinal)
 
 lista_clientes=[cliente1]
 
@@ -85,7 +91,7 @@ clientes = pickle.load(f)
 f.close()
 
 
-parking_proyecto= Parking(plazas_turismos,plazas_motocicletas,plazas_caravanas,clientes,None,None)
+parking_proyecto= Parking(plazas_turismos,plazas_motocicletas,plazas_mov_red,clientes,None,None)
 
 parking_proyecto.recaudacion=100
 parking_proyecto.recaudacion_abonados=25
