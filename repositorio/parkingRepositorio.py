@@ -96,9 +96,18 @@ parking_proyecto= Parking(plazas_turismos,plazas_motocicletas,plazas_mov_red,cli
 parking_proyecto.recaudacion=100
 parking_proyecto.recaudacion_abonados=25
 
-f2=open('../ficheros/recaudacion.pckl','wb')
+f2=open('../ficheros/recaudacion_abonados.pckl','wb')
 pickle.dump(parking_proyecto.recaudacion_abonados,f2)
 f2.close()
+
+f3=open('../ficheros/tickets.pckl','wb')
+lista_tickets=[]
+pickle.dump(lista_tickets,f3)
+f3.close()
+
+f4=open('../ficheros/recaudacion.pckl','wb')
+pickle.dump(parking_proyecto.recaudacion,f4)
+f4.close()
 
 
 fichero = open('../ficheros/parking.pckl','wb')

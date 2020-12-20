@@ -24,10 +24,15 @@ class Parking_Servicio():
         f.close()
         parking.lista_clientes=clientes
 
-        f2=open('ficheros/recaudacion.pckl','rb')
+        f2=open('ficheros/recaudacion_abonados.pckl','rb')
         recaudacion_abonados=pickle.load(f2)
         f2.close()
         parking.recaudacion_abonados=recaudacion_abonados
+
+        f3=open('ficheros/recaudacion.pckl','rb')
+        recaudacion=pickle.load(f3)
+        f3.close()
+        parking.recaudacion=recaudacion
 
     def devolver_parking(self):
         return parking
@@ -37,17 +42,20 @@ class Parking_Servicio():
         pickle.dump(nuevo_parking,fichero)
         fichero.close()
 
-    def generarPlazas(self,n):
-        nTurismos=(n*70)/100
-        nMotocicletas=(n*15)/100
-        nMovRed=(n*15)/100
-        for i in nTurismos:
+    def generar_plazas(self,n):
+        nTurismos=round((n*70)/100)
+        nMotocicletas=round((n*15)/100)
+        nMovRed=round((n*15)/100)
+        parking.plazas_turismos=[]
+        parking.plazas_motocicletas=[]
+        parking.plazas_mov_red=[]
+        for i in range(0,nTurismos):
             nuevaPlaza=Plaza(int(i)+1,"libre",None)
             parking.plazas_turismos.append(nuevaPlaza)
-        for i in nMotocicletas:
+        for i in range(0,nMotocicletas):
             nuevaPlaza=Plaza(int(i)+1+len(parking.plazas_turismos),"libre",None)
             parking.plazas_motocicletas.append(nuevaPlaza)
-        for i in nMovRed:
+        for i in range(0,nMovRed):
             nuevaPlaza=Plaza(int(i)+1+len(parking.plazas_motocicletas)+len(parking.plazas_turismos),"libre",None)
             parking.plazas_mov_red.append(nuevaPlaza)
 
@@ -80,27 +88,50 @@ class Parking_Servicio():
 
 
     def asignar_plaza(self,newvehiculo):
+        primeraPlazaLibre=Plaza(None, None, None)
         if newvehiculo.tipo=="1":
             for i in parking.plazas_turismos:
                 if i.estado=="libre":
                     i.vehiculo=newvehiculo
                     i.estado="OCUPADA"
                     break
-                break
+
         if newvehiculo.tipo=="2":
             for i in parking.plazas_motocicletas:
                 if i.estado=="libre":
                     i.vehiculo=newvehiculo
                     i.estado="OCUPADA"
                     break
-                break
+
         if newvehiculo.tipo=="3":
             for i in parking.plazas_mov_red:
                 if i.estado=="libre":
                     i.vehiculo=newvehiculo
                     i.estado="OCUPADA"
                     break
-                break
+
+    def asignar_plaza_abonado(self,newvehiculo):
+        primeraPlazaLibre=Plaza(None, None, None)
+        if newvehiculo.tipo=="1":
+            for i in parking.plazas_turismos:
+                if i.estado=="libre":
+                    i.vehiculo=newvehiculo
+                    return i
+                    break
+
+        if newvehiculo.tipo=="2":
+            for i in parking.plazas_motocicletas:
+                if i.estado=="libre":
+                    i.vehiculo=newvehiculo
+                    return i
+                    break
+
+        if newvehiculo.tipo=="3":
+            for i in parking.plazas_mov_red:
+                if i.estado=="libre":
+                    i.vehiculo=newvehiculo
+                    return i
+                    break
 
     def devolver_plaza(self,vehiculo):
         for i in parking.plazas_turismos:
@@ -116,30 +147,35 @@ class Parking_Servicio():
     def retirar_vehiculo(self,matricula,idPlaza,Pin):
         for i in parking.plazas_turismos:
             if i.id==idPlaza:
-                i.estado="Libre"
+                i.estado="libre"
+                i.vehiculo=None
                 now=datetime.now()
-                #parking.recaudacion+=int(now)*0.12
+                parking.recaudacion+=5*0.12
         for i in parking.plazas_motocicletas:
             if i.id==idPlaza:
-                i.estado="Libre"
+                i.estado="libre"
+                i.vehiculo=None
                 now=datetime.now()
-                #parking.recaudacion+=int(now)*0.08
-        for i in parking.plazas_caravanas:
+                parking.recaudacion+=5*0.08
+        for i in parking.plazas_mov_red:
             if i.id==idPlaza:
-               i.estado="Libre"
+               i.estado="libre"
+               i.vehiculo=None
                now=datetime.now()
-               #parking.recaudacion+=int(now)*0.45
+               parking.recaudacion+=5*0.45
 
     def devolver_facturacion(self):
         return parking.recaudacion
 
 
     def comprobar_abonado(self,dni):
+        encontrado=True
         for i in parking.lista_clientes:
             if i.dni==dni:
-                return True
+                encontrado=True
             else:
-                return False
+                encontrado=False
+        return encontrado
 
     def devolver_cliente(self,dni):
         for i in parking.lista_clientes:
@@ -166,7 +202,7 @@ class Parking_Servicio():
         for i in parking.plazas_motocicletas:
             if i.id==plaza.id:
                 i.estado="OCUPADO ABONADO"
-        for i in parking.plazas_caravanas:
+        for i in parking.plazas_mov_red:
             if i.id==plaza.id:
                 i.estado="OCUPADO ABONADO"
 
@@ -181,7 +217,7 @@ class Parking_Servicio():
             if i.id==idplaza and i.estado=="OCUPADO ABONADO":
                 return True
 
-        for i in parking.plazas_caravanas:
+        for i in parking.plazas_mov_red:
             if i.id==idplaza and i.estado=="OCUPADO ABONADO":
                 return True
 
@@ -197,12 +233,12 @@ class Parking_Servicio():
             if i.id==idplaza:
                 i.estado="RESERVADO"
 
-        for i in parking.plazas_caravanas:
+        for i in parking.plazas_mov_red:
             if i.id==idplaza:
                 i.estado="RESERVADO"
 
     def calcular_fecha_caducidad(self,tipoAbono):
-        f2=open('ficheros/recaudacion.pckl','wb')
+        f2=open('ficheros/recaudacion_abonados.pckl','wb')
         if tipoAbono=="1":
             fechaCaducidad1=datetime.now()+timedelta(days=30)
             parking.recaudacion_abonados+=25
@@ -255,6 +291,9 @@ class Parking_Servicio():
             cuentaIndice=cuentaIndice+1
             if i.dni==dni:
                 parking.lista_clientes.remove(i)
+        fichero=open('ficheros/lista_clientes.pckl','wb')
+        pickle.dump(parking.lista_clientes,fichero)
+        fichero.close()
 
 
 

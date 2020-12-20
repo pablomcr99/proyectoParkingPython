@@ -14,8 +14,12 @@ class Ticket_servicio():
         self.__ticket=ticket
 
     def guardar(self):
+        f=open('ficheros/lista_clientes.pckl','rb')
+        tickets=pickle.load(f)
+        f.close()
+        tickets.append(self.__ticket)
         fichero = open('ficheros/tickets.pckl', 'wb')
-        pickle.dump(self.__ticket, fichero)
+        pickle.dump(tickets, fichero)
         fichero.close()
 
     def imprimirTicket(self):
